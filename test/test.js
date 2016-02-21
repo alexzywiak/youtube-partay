@@ -32,7 +32,61 @@ describe('Video Server', function () {
       expect(list).to.eql([]);
       done();
     });
+  });
 
+  it('should message users when a user joins the same room', function(done){
+    var event = 0;
+
+    client1.on('join', function(data){
+      if(event === 0){
+        expect(data.username).to.equal('Homer');
+        expect(data.roomname).to.equal('Moes');
+      }
+      if(event === 1){
+        expect(data.username).to.equal('Barney');
+        expect(data.roomname).to.equal('Moes');
+        done();
+      }
+      event++;
+    });
+
+    client1.emit('join', {username: 'Homer', roomname: 'Moes'});
+    client2.emit('join', {username: 'Barney', roomname: 'Moes'});
+  });
+
+  it('should get all users in the room when a user joins', function(done){
+    var event = 0;
+
+    client1.on('join', function(data){
+      if(event === 0){
+        expect(data.clients).to.eql(['Homer']);
+      }
+      if(event === 1){
+        expect(data.clients).to.eql(['Homer', 'Barney']);
+        done();
+      }
+      event++;
+    });
+
+    client1.emit('join', {username: 'Homer', roomname: 'Moes'});
+    client2.emit('join', {username: 'Barney', roomname: 'Moes'});
+  });
+
+  it('should only message users in the same room', function(done){
+    var event = 0;
+
+    client1.on('join', function(data){
+      expect(data.username).to.equal('Homer');
+      event++;
+    });
+
+    client1.emit('join', {username: 'Homer', roomname: 'Moes'});
+    client2.emit('join', {username: 'Bart', roomname: 'Treehouse'});
+
+    setTimeout(function(){
+      expect(event).to.equal(1);
+      done();
+    }, 40)
   });
 
   it('should only respond with an video list array on connection to the connecting user', function (done) {
@@ -53,7 +107,6 @@ describe('Video Server', function () {
         event++;
       });
     });
-
   });
 
   it('should start playing the first video on connection', function (done) {

@@ -7,6 +7,7 @@ var YTApp = function(player, socket){
   this.landingView  = new LandingView(this);
   this.appView      = new AppView(this);
   this.handlers     = {};
+  this.user         = {};
 };
 
 YTApp.prototype.initialize = function(){
@@ -43,6 +44,8 @@ YTApp.prototype.handle = function(event, data){
 YTApp.prototype.handleLandingViewSubmit = function(data){
   this.landingView.$el.hide();
   this.appView.$el.show();
+
+
 };
 
 YTApp.prototype.handleAddVideo = function(videoId){
