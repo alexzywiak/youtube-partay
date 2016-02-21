@@ -5,7 +5,9 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-module.exports = function(app, express) {
+var socketConfig = require('./socket/socket.config');
+
+module.exports = function(app, express, io) {
 
   var router = express.Router();
 
@@ -16,6 +18,8 @@ module.exports = function(app, express) {
   app.use(bodyParser.urlencoded({
     extended: true
   }));
+
+  socketConfig(app, io);
 
   app.use(bodyParser.json());
 

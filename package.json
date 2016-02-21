@@ -1,0 +1,27 @@
+{
+  "name": "youtube-party",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexzywiak/template-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexzywiak/template-express/issues"
+  },
+  "homepage": "https://github.com/alexzywiak/template-express",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "chai": "^3.5.0",
+    "express": "^4.13.4",
+    "morgan": "^1.6.1",
+    "socket.io": "^1.4.5",
+    "socket.io-client": "^1.4.5"
+  }
+}

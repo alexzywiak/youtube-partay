@@ -2,8 +2,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
-<body>
-  <script src='main.js'></script>
+<body> 
+  <h2>GZR58d77a4A - W7qWa52k-nE</h2>
+  
+  <div id="landing">
+    <form action="">
+      <label for="username">Enter User Name</label>
+      <input type="text" id="username">
+      <button>Start</button>
+    </form>
+  </div>
+
+  <div id="app" style="display: none">
+    <div id="player"></div>
+    <ul id="vid-list"></ul>
+    <div id="controls">
+      <button id="skip" data-action="skip video">Skip</button>
+    </div>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="player.js"></script>
+  <script src="appView.js"></script>
+  <script src="landingView.js"></script>
+  <script src="app.js"></script>
+  <script src="main.js"></script>
+  <script src="yt.js"></script>
 </body>
 </html>
